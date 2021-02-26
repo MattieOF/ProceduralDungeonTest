@@ -18,6 +18,7 @@ namespace PDT
 
         VerticalLayout layout;
         LabelledCheckbox checkbox;
+        ColorScheme mainColorScheme = new ColorScheme();
 
         public ProceduralDungeonTest()
         {
@@ -31,6 +32,12 @@ namespace PDT
         {
             Window.Title = "Procedural Dungeon Test";
             Window.AllowUserResizing = false;
+            
+            mainColorScheme.bgColor         = Color.DarkCyan;
+            mainColorScheme.bgHoveredColor  = Color.Blue;
+            mainColorScheme.bgPressedColor  = Color.DarkBlue;
+            mainColorScheme.selectedColor   = Color.White;
+            mainColorScheme.textColor       = Color.White;
 
             base.Initialize();
         }
@@ -40,12 +47,12 @@ namespace PDT
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             UIResources.LoadUIResources(Content);
-            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, Color.Cyan, Color.DarkCyan, Color.White, Color.White, 8, SetDebugVisible);
+            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, mainColorScheme, 8, SetDebugVisible);
             layout = new VerticalLayout(new Point(10, 10),
                                         new UIElement[] { new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
                                         checkbox,
-                                        new Button(Point.Zero, new Vector2(100, 25), Generate, UIResources.openSansBold, "Generate", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White),
-                                        new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White)});
+                                        new Button(Point.Zero, new Vector2(100, 25), Generate, UIResources.openSansBold, "Generate", mainColorScheme),
+                                        new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", mainColorScheme)});
         }
 
         protected override void Update(GameTime gameTime)
@@ -59,6 +66,12 @@ namespace PDT
             {
                 drawDebug = !drawDebug;
                 checkbox.Selected = drawDebug;
+            }
+
+            if (InputManager.IsKeyDown(Keys.F))
+            {
+                graphics.IsFullScreen = !graphics.IsFullScreen;
+                graphics.ApplyChanges();
             }
 
             layout.Update();

@@ -33,6 +33,10 @@ namespace PDT.UI
             if (this.size.Y < 12) this.size.Y = 12;
         }
 
+        public Checkbox(Point pos, Vector2 size, ColorScheme scheme, OnSelectionChanged onSelectionChanged = null)
+            : this(pos, size, scheme.bgColor, scheme.bgHoveredColor, scheme.selectedColor, onSelectionChanged)
+        {}
+
         public void SetSelected(bool value)
         {
             selected = value;

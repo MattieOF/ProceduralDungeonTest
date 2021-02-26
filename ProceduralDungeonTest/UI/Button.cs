@@ -34,6 +34,10 @@ namespace PDT.UI
             PositionLabel();
         }
 
+        public Button(Point pos, Vector2 size, OnButtonPressed onButtonPressed, SpriteFont font, string text, ColorScheme scheme)
+            : this(pos, size, onButtonPressed, font, text, scheme.bgColor, scheme.bgHoveredColor, scheme.bgPressedColor, scheme.textColor)
+        { }
+
         public void PositionLabel()
         {
             Vector2 textSize = font.MeasureString(text);
