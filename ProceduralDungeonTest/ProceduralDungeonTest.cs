@@ -39,14 +39,10 @@ namespace PDT
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             UIResources.LoadUIResources(Content);
-            VerticalLayout layout2 = new VerticalLayout(new Point(10, 10),
-                                        new UIElement[] { new Label("Hello!", null, Point.Zero, Color.White), new Label("Hello again!", null, Point.Zero, Color.White) }, 20);
-            HorizontalLayout layout3 = new HorizontalLayout(new Point(10, 10),
-                                        new UIElement[] { new Label("Hello!", null, Point.Zero, Color.White), new Label("Hello again!", null, Point.Zero, Color.White) }, 20);
             layout = new VerticalLayout(new Point(10, 10),
-                                        new UIElement[] { new Label("Hello!", UIResources.openSansBold, Point.Zero, Color.White), layout2, layout3, 
-                                            new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White),
-                                            new Label("Hello again!", null, Point.Zero, Color.White) });
+                                        new UIElement[] { new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
+                                        new Button(Point.Zero, new Vector2(100, 25), Generate, UIResources.openSansBold, "Generate", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White),
+                                        new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White)});
         }
 
         protected override void Update(GameTime gameTime)
@@ -72,6 +68,11 @@ namespace PDT
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void Generate()
+        {
+
         }
 
     }
