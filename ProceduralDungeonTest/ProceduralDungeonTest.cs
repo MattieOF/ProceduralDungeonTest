@@ -41,7 +41,7 @@ namespace PDT
             UIResources.LoadUIResources(Content);
             layout = new VerticalLayout(new Point(10, 10),
                                         new UIElement[] { new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
-                                        new Checkbox(Point.Zero, new Vector2(1, 1), Color.Cyan, Color.DarkCyan, Color.White),
+                                        new LabelledCheckbox(Point.Zero, new Vector2(1, 1), "Test Checkbox", UIResources.openSansRegular, Color.Cyan, Color.DarkCyan, Color.White, Color.White),
                                         new Button(Point.Zero, new Vector2(100, 25), Generate, UIResources.openSansBold, "Generate", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White),
                                         new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White)});
         }
