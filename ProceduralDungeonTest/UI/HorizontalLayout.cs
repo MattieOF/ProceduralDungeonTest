@@ -55,6 +55,7 @@ namespace PDT.UI
 
             for (int i = 0; i < elements.Count; i++)
             {
+                if (!elements[i].active) continue;
                 if (i != 0) cumulativeX += horizontalSpacing;
                 elements[i].Position = new Point(cumulativeX, y);
                 cumulativeX += (int)elements[i].Size.X;
