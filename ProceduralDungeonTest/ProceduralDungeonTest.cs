@@ -40,7 +40,7 @@ namespace PDT
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             UIResources.LoadUIResources(Content);
-            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, Color.Cyan, Color.DarkCyan, Color.White, Color.White);
+            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, Color.Cyan, Color.DarkCyan, Color.White, Color.White, 8, SetDebugVisible);
             layout = new VerticalLayout(new Point(10, 10),
                                         new UIElement[] { new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
                                         checkbox,
@@ -55,6 +55,12 @@ namespace PDT
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || InputManager.IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (InputManager.IsKeyDown(Keys.Tab))
+            {
+                drawDebug = !drawDebug;
+                checkbox.Selected = drawDebug;
+            }
+
             layout.Update();
 
             base.Update(gameTime);
@@ -66,8 +72,7 @@ namespace PDT
 
             spriteBatch.Begin();
             layout.Render(spriteBatch);
-            if (InputManager.IsKeyDown(Keys.Tab)) drawDebug = !drawDebug;
-            if (drawDebug || checkbox.Selected) layout.RenderDebug(spriteBatch);
+            if (drawDebug) layout.RenderDebug(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -76,6 +81,11 @@ namespace PDT
         public void Generate()
         {
 
+        }
+
+        public void SetDebugVisible(bool value)
+        {
+            drawDebug = value;
         }
 
     }
