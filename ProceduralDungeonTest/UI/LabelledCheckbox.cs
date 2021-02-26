@@ -14,10 +14,10 @@ namespace PDT.UI
             set { checkbox.Selected = value; }
         }
         
-        public LabelledCheckbox(Point pos, Vector2 checkboxSize, string text, SpriteFont font, Color bgColor, Color bgHoveredColor, Color selectColor, Color textColor, int spacing = 8)
+        public LabelledCheckbox(Point pos, Vector2 checkboxSize, string text, SpriteFont font, Color bgColor, Color bgHoveredColor, Color selectColor, Color textColor, int spacing = 8, Checkbox.OnSelectionChanged onSelectionChanged = null)
             : base(pos, spacing)
         {
-            checkbox = new Checkbox(Point.Zero, checkboxSize, bgColor, bgHoveredColor, selectColor);
+            checkbox = new Checkbox(Point.Zero, checkboxSize, bgColor, bgHoveredColor, selectColor, onSelectionChanged);
             label = new Label(text, font, Point.Zero, textColor);
             AddElement(checkbox);
             AddElement(label);

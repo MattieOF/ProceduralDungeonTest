@@ -7,7 +7,10 @@ namespace PDT.UI
 {
     public class Checkbox : Hoverable
     {
-        public Color bgColor, bgHoveredColor, selectColor;
+        public Color              bgColor, bgHoveredColor, selectColor;
+        public OnSelectionChanged selectionChanged;
+
+        public delegate void OnSelectionChanged(bool newValue);
 
         public bool Selected
         {
@@ -17,12 +20,13 @@ namespace PDT.UI
 
         private bool selected;
 
-        public Checkbox(Point pos, Vector2 size, Color bgColor, Color bgHoveredColor, Color selectColor)
+        public Checkbox(Point pos, Vector2 size, Color bgColor, Color bgHoveredColor, Color selectColor, OnSelectionChanged onSelectionChanged = null)
             : base(pos, size)
         {
-            this.bgColor        = bgColor;
-            this.bgHoveredColor = bgHoveredColor;
-            this.selectColor    = selectColor;
+            this.bgColor          = bgColor;
+            this.bgHoveredColor   = bgHoveredColor;
+            this.selectColor      = selectColor;
+            this.selectionChanged = onSelectionChanged;
 
             // Minimum size for it to look any good.
             if (this.size.X < 12) this.size.X = 12;
@@ -32,6 +36,7 @@ namespace PDT.UI
         public void SetSelected(bool value)
         {
             selected = value;
+            selectionChanged(value);
         }
 
         public override void Update()
@@ -47,7 +52,6 @@ namespace PDT.UI
             sb.FillRectangle(BoundingRect, hovered ? bgHoveredColor : bgColor);
             if (selected) sb.FillRectangle(position.ToVector2() + new Vector2(4, 4), size - new Vector2(8, 8), selectColor);
         }
-
 
     }
 }

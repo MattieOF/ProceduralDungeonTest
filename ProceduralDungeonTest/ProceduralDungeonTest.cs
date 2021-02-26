@@ -17,6 +17,7 @@ namespace PDT
         public static Random globalRandom;
 
         VerticalLayout layout;
+        LabelledCheckbox checkbox;
 
         public ProceduralDungeonTest()
         {
@@ -39,9 +40,10 @@ namespace PDT
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             UIResources.LoadUIResources(Content);
+            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, Color.Cyan, Color.DarkCyan, Color.White, Color.White);
             layout = new VerticalLayout(new Point(10, 10),
                                         new UIElement[] { new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
-                                        new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Test Checkbox", UIResources.openSansRegular, Color.Cyan, Color.DarkCyan, Color.White, Color.White),
+                                        checkbox,
                                         new Button(Point.Zero, new Vector2(100, 25), Generate, UIResources.openSansBold, "Generate", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White),
                                         new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", Color.DarkCyan, Color.Blue, Color.DarkBlue, Color.White)});
         }
@@ -65,7 +67,7 @@ namespace PDT
             spriteBatch.Begin();
             layout.Render(spriteBatch);
             if (InputManager.IsKeyDown(Keys.Tab)) drawDebug = !drawDebug;
-            if (drawDebug) layout.RenderDebug(spriteBatch);
+            if (drawDebug || checkbox.Selected) layout.RenderDebug(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
