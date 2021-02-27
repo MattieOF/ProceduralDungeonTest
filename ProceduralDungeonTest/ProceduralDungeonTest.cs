@@ -46,11 +46,10 @@ namespace PDT
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             UIResources.LoadUIResources(Content);
-            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, mainColorScheme, 8, null);
+            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, mainColorScheme, 8, SetDebugVisible);
             layout = new VerticalLayout(new Point(10, 10), new UIElement[] { 
                                         new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
                                         checkbox,
-                                        new Radiobutton(Point.Zero, 10, mainColorScheme, SetDebugVisible),
                                         new Button(Point.Zero, new Vector2(100, 25), Generate, UIResources.openSansBold, "Generate", mainColorScheme),
                                         new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", mainColorScheme)});
         }
