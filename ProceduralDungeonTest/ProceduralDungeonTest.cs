@@ -11,27 +11,27 @@ namespace PDT
     public class ProceduralDungeonTest : Game
     {
         private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-        private bool drawDebug = false;
+        private SpriteBatch           spriteBatch;
+        private bool                  drawDebug = false;
 
         public static Random globalRandom;
 
-        VerticalLayout layout;
-        LabelledCheckbox checkbox;
-        ColorScheme mainColorScheme = new ColorScheme();
+        VerticalLayout    layout;
+        LabelledCheckbox  checkbox;
+        ColorScheme       mainColorScheme = new ColorScheme();
 
         public ProceduralDungeonTest()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
-            globalRandom = new Random();
+            graphics               = new GraphicsDeviceManager(this);
+            Content.RootDirectory  = "Content";
+            IsMouseVisible         = true;
+            globalRandom           = new Random();
         }
 
         protected override void Initialize()
         {
-            Window.Title = "Procedural Dungeon Test";
-            Window.AllowUserResizing = false;
+            Window.Title                    = "Procedural Dungeon Test";
+            Window.AllowUserResizing        = false;
             
             mainColorScheme.bgColor         = Color.DarkCyan;
             mainColorScheme.bgHoveredColor  = Color.Blue;
@@ -47,9 +47,9 @@ namespace PDT
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             UIResources.LoadUIResources(Content);
-            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, mainColorScheme, 8, SetDebugVisible);
-            layout = new VerticalLayout(new Point(10, 10),
-                                        new UIElement[] { new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
+            checkbox = new LabelledCheckbox(Point.Zero, new Vector2(20, 20), "Draw Debug", UIResources.openSansRegular, mainColorScheme, 8, null);
+            layout = new VerticalLayout(new Point(10, 10), new UIElement[] { 
+                                        new Label("Procedural Dungeon Test", UIResources.openSansBold, Point.Zero, Color.White),
                                         checkbox,
                                         new Button(Point.Zero, new Vector2(100, 25), Generate, UIResources.openSansBold, "Generate", mainColorScheme),
                                         new Button(Point.Zero, new Vector2(60, 25), Exit, UIResources.openSansBold, "Exit", mainColorScheme)});

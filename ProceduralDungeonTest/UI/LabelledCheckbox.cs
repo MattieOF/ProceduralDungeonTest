@@ -24,12 +24,7 @@ namespace PDT.UI
         }
 
         public LabelledCheckbox(Point pos, Vector2 checkboxSize, string text, SpriteFont font, ColorScheme scheme, int spacing = 8, Checkbox.OnSelectionChanged onSelectionChanged = null)
-            : base(pos, spacing)
-        {
-            checkbox = new Checkbox(Point.Zero, checkboxSize, scheme.bgColor, scheme.bgHoveredColor, scheme.selectedColor, onSelectionChanged);
-            label = new Label(text, font, Point.Zero, scheme.textColor);
-            AddElement(checkbox);
-            AddElement(label);
-        }
+            : this(pos, checkboxSize, text, font, scheme.bgColor, scheme.bgHoveredColor, scheme.selectedColor, scheme.textColor, spacing, onSelectionChanged)
+        { }
     }
 }

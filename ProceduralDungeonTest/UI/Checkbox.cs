@@ -40,7 +40,7 @@ namespace PDT.UI
         public void SetSelected(bool value)
         {
             selected = value;
-            selectionChanged(value);
+            if (selectionChanged != null) selectionChanged(value);
         }
 
         public override void Update()
