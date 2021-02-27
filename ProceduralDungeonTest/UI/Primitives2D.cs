@@ -490,6 +490,11 @@ namespace MonoGame
             DrawPoints(spriteBatch, new Vector2(x, y), CreateCircle(radius, sides), color, thickness);
         }
 
+        public static void FillCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color)
+        {
+            DrawPoints(spriteBatch, center, CreateCircle(radius, sides), color, radius);
+        }
+
         #endregion
 
 

@@ -18,7 +18,7 @@ namespace PDT.UI
             set { SetSelected(value); }
         }
 
-        private bool selected;
+        protected bool selected;
 
         public Checkbox(Point pos, Vector2 size, Color bgColor, Color bgHoveredColor, Color selectColor, OnSelectionChanged onSelectionChanged = null)
             : base(pos, size)
@@ -45,6 +45,7 @@ namespace PDT.UI
 
         public override void Update()
         {
+            if (!active) return;
             base.Update();
             if (hovered && InputManager.IsMouseButtonDown(MouseButton.Left)) SetSelected(!selected);
         }
